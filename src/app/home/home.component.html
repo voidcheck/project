@@ -1,0 +1,33 @@
+<nav>
+    <a (click)="logout()">Logout</a>
+</nav>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field>
+      <mat-label>Select Website</mat-label>
+      <mat-select formControlName="website">
+        <mat-option *ngFor="let website of websites" [value]="website.viewValue">
+          {{website.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="accent"id='Submit'>Submit</button>
+  </form>
+
+
+<section class="weather-search" class="form-group">
+    <form>
+        <div class="form-group">
+            <label for="city">City Name:</label>
+            <!-- <input ngControl="location" class="form-control" type="text" placeholder="Enter city name" id="city" (input)="onSearchLocation(input.value)" required #input > -->
+            <!--  two ways data binding through [(ngModel)] -->
+            <input class="form-control" type="text" placeholder="Enter city name" id="city" [(ngModel)]="cityName"
+                name="cityname" (input)="onSearchLocationWithEvent($event)">
+        </div>
+        <button mat-raised-button color="accent" [disabled]="disabledForecastButton" (click)="onSubmitDatabinding()"
+            type="submit" id="onSubmit">Forecast</button>
+        {{disabledForecastButton}}
+        {{cityName}}
+    </form>
+    <app-weatherlist [WeatherForecastList]="weatherForecastData"></app-weatherlist>
+</section>
