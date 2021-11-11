@@ -17,7 +17,7 @@ describe('I visit site', ()=> {
     it('I got city', () => {
         cy.get('#city').type('dehradun')
         cy.wait(1000)
-        cy.intercept('GET','http://api.openweathermap.org/data/2.5/forecast?q=delhi&appid=45f4dd45e0f724512ba044c5a2caf4bc&units=imperial')
+        cy.intercept({method: 'GET',url: '/forecast/*'}).as('weather')
         cy.get('#onSubmit').click()
         // cy.wait('@u').then(({ request }) =>{
         //     //assertion
